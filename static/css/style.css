@@ -1,0 +1,22 @@
+#noteForm {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	/* center */
+}
+
+.container {
+	display: flex;
+	flex-direction: row;
+	width: 90%;
+	/* align-items: center; */
+	justify-content: center;
+	/* center */
+}
+.form-container {
+	display: flex;
+	flex-direction: column;
+	width: 50%;
+	margin-right: 3em;
+	/* center */
+}
