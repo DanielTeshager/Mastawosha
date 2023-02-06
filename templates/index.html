@@ -9,15 +9,15 @@
 			rel="stylesheet"
 			href="{{ url_for('static', filename='/css/style.css') }}"
 		/>
-		<title>All Notes</title>
+		<title></title>
 	</head>
 	<body>
-		<h1>All Notes</h1>
+		<h1><a href="/">All Notes</a></h1>
 
 		<div class="container">
 			<!-- html form that will caputres Title, desciption, tag, link and image -->
 			<div class="form-container">
-				<form id="noteForm">
+				<form id="noteForm" method="post" action="/notes/new">
 					<!-- title -->
 					<label for="title">Title:</label>
 					<input type="text" name="title" id="title" />

@@ -65,9 +65,11 @@ submit.addEventListener("click", function (event) {
 		})
 			.then(function (response) {
 				return response.json();
+				// redirect to the home page
 			})
 			.then(function (data) {
 				console.log(data);
+				window.location.href = "/notes";
 			})
 			.catch(function (error) {
 				console.log(error);
