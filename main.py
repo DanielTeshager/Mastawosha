@@ -108,7 +108,7 @@ def edit_note(id):
         db.session.commit()
         flash('Note updated successfully')
         return redirect(url_for('notes'))
-    return render_template('edit_note.html', note=note)
+    return render_template('index.html', note=note, title='Edit Note')
 
 @app.route('/notes/<int:id>/delete', methods=['POST'])
 def delete_note(id):
@@ -117,6 +117,25 @@ def delete_note(id):
     db.session.commit()
     flash('Note deleted successfully')
     return redirect(url_for('notes'))
+
+# update note
+@app.route('/notes/<int:id>', methods=['PUT','POST'])
+def update_note():
+    note = Note.query.get_or_404(id)
+    if request.method == 'PUT' or request.method == 'POST':
+        request_data = request.get_json()
+        note.title = request_data['title']
+        note.description = request_data['description']
+        note.tags = request_data['tags']
+        note.link = request_data['link']
+        note.image = request_data['image']
+        note.date_modified = datetime.utcnow()
+        db.session.commit()
+        return jsonify({
+            'success': True,
+            'message': 'Note updated successfully',
+            'note': note.serialize()
+        }) 
 
 
 # handle 404 errors

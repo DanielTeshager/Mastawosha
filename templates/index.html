@@ -17,6 +17,37 @@
 		<div class="container">
 			<!-- html form that will caputres Title, desciption, tag, link and image -->
 			<div class="form-container">
+				{% if title == "Edit Note" %}
+				<form id="noteForm" method="post" action="">
+					<!-- title -->
+					<label for="title">Title:</label>
+					<input
+						type="text"
+						name="title"
+						id="title"
+						value="{{note['title']}}"
+					/>
+					<label for="desciption">Desciption:</label>
+					<textarea name="description" id="desrciption" cols="30" rows="10">
+                
+						{{note['description']}}
+                </textarea
+					>
+					<label for="tag">Tag:</label>
+					<input type="text" name="tags" id="tags" value="{{note['tags']}}" />
+					<label for="link">Link:</label>
+					<input type="text" name="link" id="link" value="{{note['link']}}" />
+					<label for="image">Image:</label>
+					<input
+						type="text"
+						name="image"
+						id="image"
+						value="{{note['image']}}"
+					/>
+					<!-- if title is Edit note change the button to update -->
+					<button type="submit" id="update">update</button>
+				</form>
+				{% else %}
 				<form id="noteForm" method="post" action="/notes/new">
 					<!-- title -->
 					<label for="title">Title:</label>
@@ -34,8 +65,10 @@
 					<input type="text" name="link" id="link" />
 					<label for="image">Image:</label>
 					<input type="text" name="image" id="image" />
+					<!-- if title is Edit note change the button to update -->
 					<button type="submit" id="submit">Submit</button>
 				</form>
+				{% endif %}
 			</div>
 			<div class="latest-notes">
 				<h2>Latest Notes</h2>
@@ -49,6 +82,10 @@
 							<a href="note link">{{ note['link'] }}</a>
 						</div>
 						<img src="{{ note['img'] }}" alt="Image" />
+						<!-- opttion to edit -->
+						<div class="edit">
+							<a href="/notes/{{note['id']}}/edit">Edit</a>
+						</div>
 					</div>
 					{% endfor %}
 				</div>
